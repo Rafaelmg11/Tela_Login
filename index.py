@@ -31,6 +31,11 @@ LogoLabel.place(x=50,y=100) #Posiciona o label no frama esquerdo
 #ADICIONAR CAMPOS DE USUARIO E SENHA
 UsuarioLabel = Label(RightFrame,text = "Usuario: ",font=("Century Gothic",20),bg = "MIDNIGHTBLUE",fg="White")
 
+#=================================
+#AQUI PRA BAIXO
+#=================================
+
+
 #Cria um label para o usuario
 UsuarioLabel.place(x=5,y=100) #Posiciona o label no frame direito
 
@@ -42,4 +47,8 @@ SenhaLabel = Label(RightFrame,text="Senha: ",font=("Century Gothic",20),bg = "MI
 #Cria um label para a senha
 SenhaLabel.place(x=5,y=150) #Posiciona o campo de entrada
 
+SenhaEntry = ttk.Entry(RightFrame,width=30,show="°")
 #FUNÇÃO DE LOGIN
+def Login():
+    usuario = UsuarioEntry.get()#Obtém o valor do campo de texto de entrada do usuario
+    senha = SenhaEntry
