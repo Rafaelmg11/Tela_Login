@@ -42,13 +42,27 @@ UsuarioLabel.place(x=5,y=100) #Posiciona o label no frame direito
 UsuarioEntry = ttk.Entry(RightFrame,width=30)#Cria um campo de entrada para o usuario
 UsuarioEntry.place(x=120,y=115) #Posiciona o campo de entrada
 
-SenhaLabel = Label(RightFrame,text="Senha: ",font=("Century Gothic",20),bg = "MIDNIGHTBLUE",fg = "White")
-
-#Cria um label para a senha
-SenhaLabel.place(x=5,y=150) #Posiciona o campo de entrada
-
-SenhaEntry = ttk.Entry(RightFrame,width=30,show="°")
+SenhaLabel = Label(RightFrame,text="Senha: ",font=("Century Gothic",20),bg = "MIDNIGHTBLUE",fg = "White")#Cria um label pra senha
+SenhaLabel. place(x=5,y=150) #Posiciona o label no frame direito
+SenhaEntry = ttk.Entry(RightFrame,width=30,show="°") #Cria um campo de entrada para a senha
+SenhaEntry.place(x=120,y=165)#Posiciona o campo de entrada 
 #FUNÇÃO DE LOGIN
 def Login():
     usuario = UsuarioEntry.get()#Obtém o valor do campo de texto de entrada do usuario
-    senha = SenhaEntry
+    senha = SenhaEntry.get() #Obtém o valor do campo de entrada da senha
+
+    #Conectar o banco de dados
+    db = Database() #Cria uma instancia da classe Database
+    db.cursor.execute("""
+    SELECT*FROM usuario WHERE usuario = %s AND senha = %s""",(usuario,senha))#Executa a consulta SQL para verificar o usuário e a senha
+    VerifyLogin = db.cursor.fetchone() #Obtem o resultado da consulta
+
+    #Verificar se o usuario foi encontrado
+
+    if VerifyLogin:
+        messagebox.showinfo(title = "INFO LOGIN",message="Acesso Confirmado, Bem Vindo!")#Ebibe mensagem de sucesso
+        
+    else:messagebox.showinfo(title = "INFO LOGIN",message = "Acesso Negado. Verifique se está cadastrado no Sistema!")#Exibe mensagem de erro
+
+#FUNÇÃO PARA REGISTRAR NOVO USUÁRIO
+    def
