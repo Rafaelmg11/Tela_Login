@@ -10,3 +10,23 @@ jan.title("SL Sytens - Painel de Acesso") #Define o título da janela
 jan.geometry("600X300") #Define o tamanho da janela
 jan.configure(background="white")#Configura a cor de fundo da janela
 jan.resizable(width=False,height=False)#Impede que a janela seja redimensionada
+
+#COMANDO PARA DEIXAR A TELA TRANSPARENTE
+jan.attributes("-alpha",0.9) #Define a transparencia da janela (0.0 a 1.0)
+
+#DEFINIR ÍCONE DA JANELA
+#jan.iconbitmap(default="icons/1LogoIcon.ico") #Define o ícone da janela
+
+#CARREGAR IMAGEM
+logo = PhotoImage(file="icons/LogoRafaelMagalhaes.png") #Carrega a imagem da logo
+
+#CRIAR FRAME
+LeftFrame = Frame(jan,width=200,height=300,bg="MIDNIGHTBLUE",relief="raise") #Cria um frama à esquerda
+LeftFrame.pack(side=LEFT)#Posiciona o frama à direita
+
+#ADICIONAR LOGO
+LogoLabel = Label(LeftFrame,image = logo,bg = "MIDBIGHTBLUE") #Cria um label para a image, do logo
+LogoLabel.place(x=50,y=100) #Posiciona o label no frama esquerdo 
+
+#ADICIONAR CAMPOS DE USUARIO E SENHA
+UsuarioLabel = Label(RightFrame,text = "Usuario: ",font=("Century Gothic",20),bg = "MIDNIGHTBLUE",fg="White")
