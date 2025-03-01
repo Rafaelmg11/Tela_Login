@@ -7,7 +7,7 @@ from DataBase import Database #Importa a classe Database do módulo DataBase
 #CRIAR A JANELA
 jan = Tk() # Cria uma instanci da janela principal
 jan.title("SL Sytens - Painel de Acesso") #Define o título da janela
-jan.geometry("600X300") #Define o tamanho da janela
+jan.geometry("600x300") #Define o tamanho da janela
 jan.configure(background="white")#Configura a cor de fundo da janela
 jan.resizable(width=False,height=False)#Impede que a janela seja redimensionada
 
@@ -24,8 +24,11 @@ logo = PhotoImage(file="icons/LogoRafaelMagalhaes.png") #Carrega a imagem da log
 LeftFrame = Frame(jan,width=200,height=300,bg="MIDNIGHTBLUE",relief="raise") #Cria um frama à esquerda
 LeftFrame.pack(side=LEFT)#Posiciona o frama à direita
 
+RightFrame = Frame(jan,width=395,height=300,bg="MIDNIGHTBLUE",relief="raise")#Cria um frame à direita
+RightFrame.pack(side=RIGHT)#Posiciona o Frame à direita
+
 # ADICIONAR LOGO
-LogoLabel = Label(LeftFrame,image = logo,bg = "MIDBIGHTBLUE") #Cria um label para a image, do logo
+LogoLabel = Label(LeftFrame,image = logo,bg = "MIDNIGHTBLUE") #Cria um label para a image, do logo
 LogoLabel.place(x=50,y=100) #Posiciona o label no frama esquerdo 
 
 # ADICIONAR CAMPOS DE USUARIO E SENHA
@@ -43,7 +46,7 @@ UsuarioEntry = ttk.Entry(RightFrame,width=30)#Cria um campo de entrada para o us
 UsuarioEntry.place(x=120,y=115) #Posiciona o campo de entrada
 
 SenhaLabel = Label(RightFrame,text="Senha: ",font=("Century Gothic",20),bg = "MIDNIGHTBLUE",fg = "White")#Cria um label pra senha
-SenhaLabel. place(x=5,y=150) #Posiciona o label no frame direito
+SenhaLabel.place(x=5,y=150) #Posiciona o label no frame direito
 SenhaEntry = ttk.Entry(RightFrame,width=30,show="°") #Cria um campo de entrada para a senha
 SenhaEntry.place(x=120,y=165)#Posiciona o campo de entrada 
 
@@ -55,7 +58,7 @@ def Login():
     #Conectar o banco de dados
     db = Database() #Cria uma instancia da classe Database
     db.cursor.execute("""
-    SELECT*FROM usuario WHERE usuario = %s AND senha = %s""",(usuario,senha))#Executa a consulta SQL para verificar o usuário e a senha
+    SELECT*FROM usuario1 WHERE usuario = %s AND senha = %s""",(usuario,senha))#Executa a consulta SQL para verificar o usuário e a senha
     VerifyLogin = db.cursor.fetchone() #Obtem o resultado da consulta
 
     #Verificar se o usuario foi encontrado
@@ -81,7 +84,7 @@ def Registrar():
     NomeEntry = ttk.Entry(RightFrame,width=30)#Cria um campo de entrada para o nome
     NomeEntry.place(x=120,y=20)#Posiciona o campo de entrada
 
-    EmailLabel = Label(RightFrame,text="Email:",font=("Century Gothic,20"),bg="MIDNIGHTBLUE",fg="White")#Cria um label para o email
+    EmailLabel = Label(RightFrame,text="Email:",font=("Century Gothic",20),bg="MIDNIGHTBLUE",fg="White")#Cria um label para o email
     EmailLabel.place(x=5,y=40)#Posiciona o label no frame direito
     EmailEntry = ttk.Entry(RightFrame,width=30)#Cria um campo de entrada para o email
     EmailEntry.place(x=120,y=55)#Posiciona o campo de entrada
@@ -107,8 +110,8 @@ def Registrar():
             UsuarioEntry.delete(0,END)#Limpa o campo de entrada do usuario
             SenhaEntry.delete(0,END)#Limpa o campo de entrada do senha
 
-            Register = ttk.Button(RightFrame,text="REGISTRAR",width=15,command=RegistrarNoBanco) #Cria um botão de registro
-            Register.place(x=150,y=225) #Posiciona o botão de registro
+    Register = ttk.Button(RightFrame,text="REGISTRAR",width=15,command=RegistrarNoBanco) #Cria um botão de registro
+    Register.place(x=150,y=225) #Posiciona o botão de registro
 
     #FUNÇÃO PARA VOLTAR À TELA DE LOGIN
     def VoltarLogin():
@@ -129,6 +132,7 @@ def Registrar():
     Voltar.place(x=150,y=255)#Posiciona o botão de voltar
 
 RegisterButton=ttk.Button(RightFrame,text="REGISTRAR",width=15,command=Registrar)#Cria um botão de registro
+RegisterButton.place(x=150,y=255)#Posiciona o botao de registro
 
 #INICIAR O LOOP PRINCIPAL:
 jan.mainloop()#Inicia o loop principal da aplicação
